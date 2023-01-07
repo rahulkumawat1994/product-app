@@ -17,16 +17,11 @@ const HomePage = () => {
   }, []);
   const [category, setCategory] = useState("");
   const onCategoryClick = (value: string) => {
-    if (value === category) {
-      setCategory("");
-    } else {
-      setCategory(value);
-    }
-    ProductApi.getProductByCategory(value === category ? "" : value).then(
-      (data) => {
-        setState(data[0]?.data);
-      }
-    );
+    const payload = value === category ? "" : value;
+    setCategory(payload);
+    ProductApi.getProductByCategory(payload).then((data) => {
+      setState(data[0]?.data);
+    });
   };
   return (
     <>
